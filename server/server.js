@@ -13,6 +13,9 @@ var flash = require('connect-flash');
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?'.red);
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 
