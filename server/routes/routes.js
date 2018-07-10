@@ -119,6 +119,7 @@ router.post('/create', function(req, res) {
         });
     }
     // if the character name isnt already taken
+    // this isnt working
     if (user.characters.name != name)
     {
         var characterDetail = {name: name, race: race, class: charClass, level: 1};
@@ -140,6 +141,9 @@ router.post('/create', function(req, res) {
             }
             console.log('character saved for user');
         });
+    }
+    else{
+        console.log("Error: name already taken");
     }
 
 
