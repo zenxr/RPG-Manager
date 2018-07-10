@@ -4,6 +4,7 @@ This application is currently *under development*. It is indended to help users 
 ## Framework
 This application uses the MERN fullstack (MongoDB, Express, React.js, and Node).
 ## Installation
+* `mongodb` - You'll need to install mongodb and create a database
 * `Node` - I recommend installing via [nvm](https://github.com/creationix/nvm). This will also install `npm`
 * `Express` is installed via express-generator. After installing node run:
 
@@ -14,4 +15,4 @@ This application uses the MERN fullstack (MongoDB, Express, React.js, and Node).
 * Enter the directory and run `npm install` to install dependencies.
 
 ## Running
-`npm start` in terminal
+Ensure mongodb is running, then `npm start` in terminal
