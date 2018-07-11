@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Profile Page</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
@@ -19,23 +19,22 @@
 <div class="container">
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
         <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="well">
-                <h3><span class="fa fa-user"></span> User Account</h3>
-
+                <h3><span class="fa fa-wrench"></span> User Account</h3>
                     <p>
                         <strong>email</strong>: <%= user.local.email %><br>
                         <strong>date</strong>: <%= user.date %><br>
-                    </p>
+                    </p><br>
+                    <a href="/logout" class="btn btn-default btn-sm btn-block "><span class="fa fa-sign-out"></span><strong> Logout</a>
 
             </div>
             <div class="well">
-                <h3><span class="fa fa-user"></span> Links</h3>
+                <h3><span class="fa fa-link"></span> Links</h3>
                 <div class="list-group">
                   <a href="/" class="list-group-item list-group-item-action">Home</a>
                   <a href="/profile" class="list-group-item list-group-item-action">This page</a>
@@ -45,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-7">
         <% if (user.characters) { %>
             <% characters.forEach(function(character){ %>
                     <div class="well">
@@ -59,6 +58,24 @@
 
                     </div>
             <% }); %>
+        <% } %>
+        <% if (user.characters == undefined || user.characters.length == 0) { %>
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Characters</h3>
+                <p>
+                    You haven't created a character yet!<br>
+                    <strong><a href="/create" class="text-primary">Click here to create one! </a></strong>
+                </p>
+            </div>
+        <% } %>
+        <% if (user.characters != undefined && user.characters.length > 0) { %>
+            <div class="well">
+                <h3><span class="fa fa-plus-circle"></span> New Character</h3>
+                <p>
+                    If you'd like to create a new character,<br>
+                    <strong><a href="/create" class="text-primary">click here to create one! </a></strong>
+                </p>
+            </div>
         <% } %>
         </div>
     </div>

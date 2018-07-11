@@ -70,10 +70,6 @@ router.get('/profile', isLoggedIn, function(req, res) {
             user : req.user // get the user out of session and pass to template
         });
     }
-
-    //res.render('app/profile/profile.ejs', {
-    //    user : req.user, character: character // get the user out of session and pass to template
-    //});
 });
 
 // =====================================
@@ -119,14 +115,7 @@ router.post('/create', function(req, res) {
           console.log("Error!")
           return
         }
-        console.log('character saved for user');
     });
-
-
-    // if errors exist, inform the user via flash (?)
-
-    // ensure the character name doesn't already exist
-
 
     res.redirect('/profile');
 
