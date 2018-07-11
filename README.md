@@ -16,3 +16,40 @@ This application uses the MERN fullstack (MongoDB, Express, React.js, and Node).
 
 ## Running
 Ensure mongodb is running, then `npm start` in terminal
+
+## Project Structure
+
+```
+.
+├── bin
+│   └── www
+├── client ➜  client side code is here
+│   ├── app
+│   │   ├── character
+│   │   │   └── character.ejs ➜ ejs files generate web pages
+│   │   └── profile
+│   │       ├── login.ejs
+│   │       ├── profile.ejs
+│   │       └── signup.ejs
+│   ├── css
+│   │   └── App.css
+│   ├── images ➜ static images
+│   │   └── logo.jpg
+│   ├── index.ejs ➜ generates the '/' page
+│   └── index.js
+├── models ➜ mongoose character models
+│   ├── character.js
+│   └── user.js
+├── package.json ➜ npm package's file
+├── package-lock.json ➜ controls package versions
+├── README.md ➜ this file
+├── server ➜ server side code is all here
+│   ├── config ➜ user authentication files
+│   │   ├── database.js
+│   │   └── passport.js
+│   ├── routes
+│   │   └── routes.js ➜ determines routing
+│   └── server.js ➜ configures express and connects to DB
+└── webpack.config.js ➜ webpack configuration + bundling
+
+```
