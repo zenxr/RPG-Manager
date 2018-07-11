@@ -54,15 +54,22 @@ router.post('/signup', passport.authenticate('local-signup', {
 // we will use route middleware to verify this (the isLoggedIn function)
 router.get('/profile', isLoggedIn, function(req, res) {
 
-    var character = Character.findById(req.user.characters._id, function(err, character) {
-        // if there are any errors, return the error
-        if (err)
-            return done(err);
-
-        res.render('app/profile/profile.ejs', {
-            user : req.user, character: character // get the user out of session and pass to template
+    // if the user has characters
+    if (req.user.characters){
+        Character.find({ '_id': { $in: req.user.characters}}, function(err, characters) {
+            if (err)
+                return done(err);
+            res.render('app/profile/profile.ejs', {
+                user : req.user, characters : characters // get the user out of session and pass to template
+            });
         });
-    });
+    }
+    // else, dont pass characters
+    else {
+        res.render('app/profile/profile.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    }
 
     //res.render('app/profile/profile.ejs', {
     //    user : req.user, character: character // get the user out of session and pass to template
@@ -96,55 +103,24 @@ router.post('/create', function(req, res) {
 
     var user = req.user // grab the user
 
-    // if the account has no characters
-    if (!user.characters){
-        var characterDetail = {name: name, race: race, class: charClass, level: 1};
-        var character = new Character(characterDetail);
-        
-        character.save(function (err) {
-            if (err) {
-              console.log("Error!")
-              return
-            }
-            console.log('New Character: ' + character);
-        });
+    var characterDetail = {name: name, race: race, class: charClass, level: 1};
+    var character = new Character(characterDetail);
+    
+    character.save(function (err) {
+        if (err) {
+          console.log("Error!")
+          return
+        }
+    });
 
-        user.set({characters: character});
-        user.save(function (err) {
-            if (err) {
-              console.log("Error!")
-              return
-            }
-            console.log('character saved for user');
-        });
-    }
-    // if the character name isnt already taken
-    // this isnt working
-    if (user.characters.name != name)
-    {
-        var characterDetail = {name: name, race: race, class: charClass, level: 1};
-        var character = new Character(characterDetail);
-        
-        character.save(function (err) {
-            if (err) {
-              console.log("Error!")
-              return
-            }
-            console.log('New Character: ' + character);
-        });
-
-        user.set({characters: character});
-        user.save(function (err) {
-            if (err) {
-              console.log("Error!")
-              return
-            }
-            console.log('character saved for user');
-        });
-    }
-    else{
-        console.log("Error: name already taken");
-    }
+    user.characters.push(character);
+    user.save(function (err) {
+        if (err) {
+          console.log("Error!")
+          return
+        }
+        console.log('character saved for user');
+    });
 
 
     // if errors exist, inform the user via flash (?)

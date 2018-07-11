@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
     // creation date
     date: {type : Date, default: Date.now },
     // array of characters
-    characters: {type: mongoose.Schema.ObjectId, ref: 'Character'}
+    characters: [{type: mongoose.Schema.ObjectId, ref: 'Character'}]
 });
 
 // methods ======================
