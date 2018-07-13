@@ -33,12 +33,19 @@
                             <strong>Race</strong>: <%= character.race %><br>
                             <strong>Level</strong>: <%= character.level %><br>
                         </p>
-                        <button type="submit" class="btn btn-warning btn-lg">Delete</button>
+                        <button id="profileButton" class="btn btn-warning btn-sm">Back to Profile</button>
+                        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                        <button type="submit" class="btn btn-warning btn-sm">Delete</button>
                     </div>
             <% } %>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    document.getElementById("profileButton").onclick = function () {
+        location.href = "/profile";
+    };
+</script>
 </body>
 </html>
 

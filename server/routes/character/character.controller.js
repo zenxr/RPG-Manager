@@ -45,8 +45,8 @@ function createCharacter(req, res) {
 function showCharacter(req, res) {
   // pass in the relevant character information
   Character.findById(req.params.id, function(err, some_char){
-    console.log(some_char);
-    res.render('app/character/character.ejs', { user : req.user, character : some_char });
+    req.selectedChar = some_char;
+    res.render('app/character/character.ejs', { user : req.user, character : req.selectedChar });
   });
 }
 
