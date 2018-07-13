@@ -83,48 +83,7 @@ router.get('/logout', function(req, res) {
 
 // routing to respective folders
 router.use('/character', require('./character'));
-// =====================================
-// Create ==============================
-// =====================================
-// show the create character form
-// only accessible if user is logged in
-/*
-router.get('/create', isLoggedIn, function(req, res) {
 
-    // render the page and pass in any flash data if it exists
-    res.render('app/character/character.ejs');
-});
-
-router.post('/create', isLoggedIn, function(req, res) {
-    // add the created character to the database
-    var name = req.body.name;
-    var race = req.body.race;
-    var charClass = req.body.class;
-
-    var user = req.user // grab the user
-
-    var characterDetail = {name: name, race: race, class: charClass, level: 1};
-    var character = new Character(characterDetail);
-    
-    character.save(function (err) {
-        if (err) {
-          console.log("Error!")
-          return
-        }
-    });
-
-    user.characters.push(character);
-    user.save(function (err) {
-        if (err) {
-          console.log("Error!")
-          return
-        }
-    });
-
-    res.redirect('/profile');
-
-});
-*/
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 

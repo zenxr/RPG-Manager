@@ -24,6 +24,7 @@ function createCharacter(req, res) {
   var characterDetail = {name: name, race: race, class: charClass, level: 1};
   var character = new Character(characterDetail);
 
+  // save the character to DB
   character.save(function (err) {
       if (err) {
         console.log("Error!")
@@ -31,6 +32,7 @@ function createCharacter(req, res) {
       }
   });
 
+  // update our list of characters for the user
   user.characters.push(character);
   user.save(function (err) {
       if (err) {
@@ -39,6 +41,7 @@ function createCharacter(req, res) {
       }
   });
 
+  // go back to profile
   res.redirect('/profile');
 }
 

@@ -48,6 +48,9 @@ Ensure mongodb is running, then `npm start` in terminal
 │   │   ├── database.js
 │   │   └── passport.js
 │   ├── routes
+│   │   ├── character ➜ routed to for character interactions
+│   │   │   ├── character.controller.js
+│   │   │   └── index.js
 │   │   └── routes.js ➜ determines routing
 │   └── server.js ➜ configures express and connects to DB
 └── webpack.config.js ➜ webpack configuration + bundling
