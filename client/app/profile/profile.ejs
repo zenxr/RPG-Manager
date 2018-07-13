@@ -38,7 +38,7 @@
                 <div class="list-group">
                   <a href="/" class="list-group-item list-group-item-action">Home</a>
                   <a href="/profile" class="list-group-item list-group-item-action">This page</a>
-                  <a href="/create" class="list-group-item list-group-item-action">Create a character</a>
+                  <a href="/character" class="list-group-item list-group-item-action">Create a character</a>
                   <a href="#" class="list-group-item list-group-item-action" disabled>DnD 5e API</a>
                   <a href="#" class="list-group-item list-group-item-action" disabled>Show Characters</a>
                 </div>
@@ -51,11 +51,12 @@
                         <h3><span class="fa fa-user"></span> <%= character.name %></h3>
 
                             <p>
+                                <strong>ID</strong>: <%= character._id %><br>
                                 <strong>Class</strong>: <%= character.class %><br>
                                 <strong>Race</strong>: <%= character.race %><br>
                                 <strong>Level</strong>: <%= character.level %><br>
                             </p>
-
+                            <a href="/character/<%= character._id%>" class="btn btn-default btn-sm"><span class="fa fa-sign-out"></span><strong> Select</a>
                     </div>
             <% }); %>
         <% } %>
@@ -64,7 +65,7 @@
                 <h3><span class="fa fa-user"></span> Characters</h3>
                 <p>
                     You haven't created a character yet!<br>
-                    <strong><a href="/create" class="text-primary">Click here to create one! </a></strong>
+                    <strong><a href="/character" class="text-primary">Click here to create one! </a></strong>
                 </p>
             </div>
         <% } %>
@@ -73,7 +74,7 @@
                 <h3><span class="fa fa-plus-circle"></span> New Character</h3>
                 <p>
                     If you'd like to create a new character,<br>
-                    <strong><a href="/create" class="text-primary">click here to create one! </a></strong>
+                    <strong><a href="/character" class="text-primary">click here to create one! </a></strong>
                 </p>
             </div>
         <% } %>

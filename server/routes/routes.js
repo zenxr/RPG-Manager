@@ -80,18 +80,22 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+
+// routing to respective folders
+router.use('/character', require('./character'));
 // =====================================
 // Create ==============================
 // =====================================
 // show the create character form
 // only accessible if user is logged in
+/*
 router.get('/create', isLoggedIn, function(req, res) {
 
     // render the page and pass in any flash data if it exists
     res.render('app/character/character.ejs');
 });
 
-router.post('/create', function(req, res) {
+router.post('/create', isLoggedIn, function(req, res) {
     // add the created character to the database
     var name = req.body.name;
     var race = req.body.race;
@@ -120,6 +124,7 @@ router.post('/create', function(req, res) {
     res.redirect('/profile');
 
 });
+*/
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
