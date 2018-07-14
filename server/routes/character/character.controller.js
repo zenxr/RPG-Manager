@@ -8,6 +8,7 @@ var User = require('../../../models/user');
 // load up the character model
 var Character = require('../../../models/character');
 
+
 function index(req, res) {
     // render the page and pass in any flash data if it exists
     res.render('app/character/characterCreate.ejs');
@@ -32,6 +33,7 @@ function createCharacter(req, res) {
       }
   });
 
+  
   // update our list of characters for the user
   user.characters.push(character);
   user.save(function (err) {
