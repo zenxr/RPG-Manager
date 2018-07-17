@@ -84,6 +84,10 @@ router.get('/logout', function(req, res) {
 // routing to respective folders
 router.use('/character', require('./character'));
 
+// routing to api folders
+router.use('/api/user', require('../api/user'));
+router.use('/api/character', require('../api/character'));
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 

@@ -22,7 +22,7 @@ function createCharacter(req, res) {
 
   var user = req.user // grab the user
 
-  var characterDetail = {name: name, race: race, class: charClass, level: 1};
+  var characterDetail = {name: name, race: race, class: charClass, user : user, level: 1};
   var character = new Character(characterDetail);
 
   // save the character to DB
