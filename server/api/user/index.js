@@ -6,8 +6,7 @@ var controller = require("./user.controller");
 // =====================================
 // show the create character form
 // only accessible if user is logged in
-router.get('/', controller.index);
-router.get('/:id', controller.getUser);
+ 
 router.delete('/:id', controller.removeUser);
 router.get('/:id/characters', controller.getUserCharacters)
 
