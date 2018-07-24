@@ -9,6 +9,7 @@
     "babel-preset-latest": "^6.24.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.6.1",
@@ -28,5 +29,6 @@
   "scripts": {
     "start": "npm run webpack && nodemon --exec babel-node -- bin/www",
     "webpack": "webpack"
-  }
+  },
+  "proxy": "http://localhost:8000"
 }
