@@ -19,6 +19,7 @@
     "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "querystring": "^0.2.0",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
@@ -29,7 +30,7 @@
     "redux": "^4.0.0"
   },
   "scripts": {
-    "start": "npm run webpack && nodemon --exec babel-node -- bin/www",
+    "start": "npm run webpack && nodemon --exec babel-node --presets latest -- bin/www",
     "webpack": "webpack"
   },
   "proxy": "http://localhost:8000"
