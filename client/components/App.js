@@ -1,9 +1,9 @@
 //client/components/App.js
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 // import components
-import AppNavbar from './AppNavbar.js';
-import Login from './Login.js';
+import Routes from './Routes';
 
 // import css
 //import '../css/bootstrap.min.css';
@@ -11,10 +11,11 @@ import Login from './Login.js';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <AppNavbar />
-        <Login />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Routes />
+        </div>
+      </BrowserRouter>
     );
   }
 }

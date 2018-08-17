@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   Navbar,
   Nav,
@@ -11,20 +12,24 @@ import {
 class AppNavbar extends Component {
   render () {
     return (
-      <div>
+      <div className = "Navbar Container">
         <Navbar>
           <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#home">DnD App</a>
-            </Navbar.Brand>
+            <LinkContainer  to="/">
+              <Navbar.Brand>DnD App</Navbar.Brand>
+            </LinkContainer>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="#">
-              Link
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link
-            </NavItem>
+            <LinkContainer to="/signup">
+              <NavItem>
+                Sign Up
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to="/login">
+              <NavItem>
+                Log in
+              </NavItem>
+            </LinkContainer>
             <NavDropdown eventKey={3} title="Navigation" id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}>Profile</MenuItem>
               <MenuItem eventKey={3.2}>Characters</MenuItem>

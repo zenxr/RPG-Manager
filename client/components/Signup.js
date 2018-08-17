@@ -35,13 +35,12 @@ class Login extends Component {
     event.preventDefault();
     // send an axios request to log in.
     // user data should be kept after via redux
-    /*axios.post('/login', querystring.stringify({email: this.state.email, password: this.state.password}), {
+    axios.post('/signup', querystring.stringify({email: this.state.email, password: this.state.password}), {
       headers: {
         "Content-Type": "multipart/form-data"
       }
-      */
-     axios.post('/login', {email: this.state.email, password: this.state.password })
-    .then(function(response) {
+    }).then(function(response) {
+      console.log(response.data);
       this.setState({messageFromServer: response.data});
     });
   }
@@ -53,11 +52,11 @@ class Login extends Component {
   }
 
   render() {
-    return (<div className="Login">
+    return (<div className="Signup">
       <Grid>
         <Col sm={6} smOffset={3}>
           <Image src="images/logo.jpg" responsive/>
-          <h1 className="text-center"><span className="fa fa-sign-in" /> Log In</h1>
+          <h1 className="text-center"><span className="fa fa-sign-in" /> Sign Up</h1>
           <form onSubmit={this.handleSubmit}>
             <FormGroup controlId="email" bsSize="large">
               <ControlLabel>Email</ControlLabel>
@@ -68,7 +67,7 @@ class Login extends Component {
               <FormControl value={this.state.password} onChange={this.handleChange} type="password"/>
             </FormGroup>
             <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
-              Login
+              Sign up
             </Button>
           </form>
         </Col>

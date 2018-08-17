@@ -17,35 +17,40 @@ router.get('/', function(req, res){
 // LOGIN ===============================
 // =====================================
 // show the login form
+// this has been replaced by React
+/*
 router.get('/login', function(req, res) {
-
     // render the page and pass in any flash data if it exists
-    res.render('app/profile/login.ejs', { message: req.flash('loginMessage') }); 
+    res.render('app/profile/login.ejs', { message: req.flash('loginMessage') });
 });
+*/
 
 // process the login form
-router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-}));
+router.post('/login', passport.authenticate('local-login'), function(req, res) {
+    // if this function gets called, authentication was successful
+    // 'req.user' contains the authenticated User
+    res.json({ user : req.user });
+});
 
 // =====================================
 // SIGNUP ==============================
 // =====================================
 // show the signup form
+// now handled by react
+/*
 router.get('/signup', function(req, res) {
 
     // render the page and pass in any flash data if it exists
     res.render('app/profile/signup.ejs', { message: req.flash('signupMessage') });
 });
+*/
 
 // process the signup form
-router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-}));
+router.post('/signup', passport.authenticate('local-login'), function(req, res) {
+    // if this function gets called, authentication was successful
+    // 'req.user' contains the authenticated User
+    res.json({ user : req.user });
+});
 
 // =====================================
 // PROFILE SECTION =====================
@@ -88,10 +93,15 @@ router.use('/character', require('./character'));
 router.use('/api/user', require('../api/user'));
 router.use('/api/character', require('../api/character'));
 
+// for everything else, route to index
+router.get('/*', function(req, res){
+  res.render('index')
+});
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
