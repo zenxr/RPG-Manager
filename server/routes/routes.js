@@ -28,8 +28,8 @@ router.get('/login', function(req, res) {
 // process the login form
 router.post('/login', passport.authenticate('local-login'), function(req, res) {
     // if this function gets called, authentication was successful
-    // 'req.user' contains the authenticated User
-    res.json({ user : req.user });
+    if (req)
+      res.json({ user : req.user });
 });
 
 // =====================================

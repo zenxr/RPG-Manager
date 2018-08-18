@@ -8,6 +8,7 @@ import Login from './Login';
 import AppNavbar from './AppNavbar';
 import Signup from './Signup';
 import Home from './Home';
+import Profile from './Profile';
 
 class Routes extends Component {
   render () {
@@ -18,6 +19,7 @@ class Routes extends Component {
                   <Route exact path="/" component={ Home } />
                   <Route path="/login" component={ Login } />
                   <Route exact path="/signup" component={ Signup } />
+                  <Route exact path="/profile_dev" component={ Profile } />
               </Switch>
           </div>
       );

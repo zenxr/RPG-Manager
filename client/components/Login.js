@@ -19,7 +19,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      messageFromServer: ""
+      messageFromServer: "",
+      user: ""
     };
 
     this.validateForm = this.validateForm.bind(this);
@@ -31,18 +32,29 @@ class Login extends Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  handleSubmit(event) {
+  handleSubmit (event) {
     event.preventDefault();
+    var self = this;
     // send an axios request to log in.
-    // user data should be kept after via redux
-    /*axios.post('/login', querystring.stringify({email: this.state.email, password: this.state.password}), {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-      */
-     axios.post('/login', {email: this.state.email, password: this.state.password })
+    axios.post('/login', {email: this.state.email, password: this.state.password })
     .then(function(response) {
-      this.setState({messageFromServer: response.data});
+      // if we get back a user, then we have been authenticated
+      if(response.data){
+        // redirect the user
+        const location = {
+          pathname: '/profile_dev',
+          state: { from: '/login' , user: response.data}
+        }
+        self.props.history.push(location);
+      }
+      // unknown error
+      else{
+        console.log("Some error occured");
+      }
+    })
+    // this error will throw for incorrect credentials
+    .catch(error => {
+      console.log(error);
     });
   }
 
