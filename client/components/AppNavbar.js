@@ -30,6 +30,11 @@ class AppNavbar extends Component {
                 Log in
               </NavItem>
             </LinkContainer>
+            <LinkContainer to="/profile_dev">
+              <NavItem>
+                Profile
+              </NavItem>
+            </LinkContainer>
             <NavDropdown eventKey={3} title="Navigation" id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}>Profile</MenuItem>
               <MenuItem eventKey={3.2}>Characters</MenuItem>

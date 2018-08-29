@@ -8,14 +8,21 @@ import Routes from './Routes';
 // import css
 //import '../css/bootstrap.min.css';
 
+
+// redux imports
+import { Provider } from "react-redux";
+import store from "../redux/store/index";
+
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Routes />
-        </div>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Routes />
+          </div>
+        </BrowserRouter>
+    </Provider>
     );
   }
 }

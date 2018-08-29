@@ -16,20 +16,12 @@ router.get('/', function(req, res){
 // =====================================
 // LOGIN ===============================
 // =====================================
-// show the login form
-// this has been replaced by React
-/*
-router.get('/login', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('app/profile/login.ejs', { message: req.flash('loginMessage') });
-});
-*/
-
-// process the login form
+// process the login request
 router.post('/login', passport.authenticate('local-login'), function(req, res) {
     // if this function gets called, authentication was successful
-    if (req)
+    if (req){
       res.json({ user : req.user });
+    }
 });
 
 // =====================================
@@ -46,9 +38,10 @@ router.get('/signup', function(req, res) {
 */
 
 // process the signup form
-router.post('/signup', passport.authenticate('local-login'), function(req, res) {
+router.post('/signup', passport.authenticate('local-signup'), function(req, res) {
     // if this function gets called, authentication was successful
     // 'req.user' contains the authenticated User
+    console.log(req);
     res.json({ user : req.user });
 });
 

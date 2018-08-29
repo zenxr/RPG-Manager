@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import querystring from 'querystring';
+
+// redux imports
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import {
   Grid,
@@ -11,15 +13,13 @@ import {
   Well
 } from 'react-bootstrap'
 
-class Profile extends Component {
+const mapStateToProps = state => {
+  return { user: state.user.user };
+};
+
+class ConnectedProfile extends Component {
   constructor(props) {
     super(props);
-    console.log(props.location);
-    if (props.location.state !== undefined ) {
-      this.state = {
-        user: props.location.state.user.user
-      };
-    }
   }
 
   render() {
@@ -34,13 +34,13 @@ class Profile extends Component {
             Profile Page</h1>
         <Col sm={5}>
           {/* only display if we have a user */}
-          { this.state && this.state.user &&
+          { this.props && this.props.user &&
             <Well>
               <h3><span className="fa fa-wrench"></span> User Account</h3>
                   <p>
-                      <strong>id</strong>: { this.state.user._id }<br />
-                      <strong>email</strong>: { this.state.user.local.email }<br />
-                      <strong>date</strong>: { this.state.user.date }<br />
+                      <strong>id</strong>: { this.props.user._id }<br />
+                      <strong>email</strong>: { this.props.user.local.email }<br />
+                      <strong>date</strong>: { this.props.user.date }<br />
                   </p><br />
                   <a href="/logout" className="btn btn-default btn-sm btn-block "><span className="fa fa-sign-out"></span><strong> Logout </strong></a>
 
@@ -61,5 +61,11 @@ class Profile extends Component {
     </div>);
   }
 }
+
+const Profile = connect(mapStateToProps)(ConnectedProfile);
+
+ConnectedProfile.propTypes = {
+  user: PropTypes.object.isRequired
+};
 
 export default Profile;
