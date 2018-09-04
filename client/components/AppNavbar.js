@@ -30,7 +30,7 @@ class AppNavbar extends Component {
                 Log in
               </NavItem>
             </LinkContainer>
-            <LinkContainer to="/profile_dev">
+            <LinkContainer to="/profile">
               <NavItem>
                 Profile
               </NavItem>

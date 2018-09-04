@@ -15,7 +15,11 @@ This application uses the MERN fullstack (MongoDB, Express, React.js, and Node).
 * Enter the directory and run `npm install` to install dependencies.
 
 ## Running
-Ensure mongodb is running, then `npm start` in terminal
+Utilizing npm, the project is set up to run in one of two ways:
+
+* `npm start` starts the server for deployment purposes
+* `npm run start-dev` starts the server in a reloadable state where the server is reloaded upon changes.
+
 
 ## Project Structure
 

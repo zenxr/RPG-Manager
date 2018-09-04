@@ -6,7 +6,6 @@ var controller = require("./character.controller");
 // =====================================
 // show the create character form
 // only accessible if user is logged in
-router.get('/', isLoggedIn, controller.index);
 router.post('/', isLoggedIn, controller.createCharacter);
 router.get('/:id', isLoggedIn, controller.showCharacter);
 
@@ -14,7 +13,7 @@ router.get('/:id', isLoggedIn, controller.showCharacter);
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 

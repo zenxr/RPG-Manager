@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import {Link} from 'react-router-dom';
+
 // redux imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -34,7 +36,7 @@ class ConnectedProfile extends Component {
             Profile Page</h1>
         <Col sm={5}>
           {/* only display if we have a user */}
-          { this.props && this.props.user &&
+          { this.props && this.props.user && this.props.user._id &&
             <Well>
               <h3><span className="fa fa-wrench"></span> User Account</h3>
                   <p>
@@ -49,11 +51,11 @@ class ConnectedProfile extends Component {
           <Well>
             <h3><span className="fa fa-link"></span> Links</h3>
             <div className="list-group">
-              <a href="/" className="list-group-item list-group-item-action">Home</a>
-              <a href="/profile" className="list-group-item list-group-item-action">This page</a>
-              <a href="/character" className="list-group-item list-group-item-action">Create a character</a>
-              <a href="#" className="list-group-item list-group-item-action" disabled>DnD 5e API</a>
-              <a href="#" className="list-group-item list-group-item-action" disabled>Show Characters</a>
+              <Link to="/" className="list-group-item list-group-item-action">Home</Link>
+              <Link to="/profile" className="list-group-item list-group-item-action">This page</Link>
+              <Link to="/create" className="list-group-item list-group-item-action">Create a character</Link>
+              <Link to="#" className="list-group-item list-group-item-action" disabled>DnD 5e API</Link>
+              <Link to="#" className="list-group-item list-group-item-action" disabled>Show Characters</Link>
             </div>
           </Well>
         </Col>

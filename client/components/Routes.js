@@ -9,9 +9,7 @@ import AppNavbar from './AppNavbar';
 import Signup from './Signup';
 import Home from './Home';
 import Profile from './Profile';
-
-// redux testing
-import Login_testing from './Login_testing';
+import CharacterCreate from './CharacterCreate';
 
 class Routes extends Component {
   render () {
@@ -20,10 +18,10 @@ class Routes extends Component {
               <AppNavbar />
               <Switch>
                   <Route exact path="/" component={ Home } />
-                  <Route exact path="/login_testing" component={ Login_testing } />
                   <Route path="/login" component={ Login } />
                   <Route exact path="/signup" component={ Signup } />
-                  <Route exact path="/profile_dev" component={ Profile } />
+                  <Route exact path="/profile" component={ Profile } />
+                  <Route exact path="/create" component={ CharacterCreate } />
               </Switch>
           </div>
       );

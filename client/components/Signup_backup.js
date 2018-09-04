@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import querystring from 'querystring';
 
-// redux imports
-import PropTypes from "prop-types";
-import { addUser } from "../redux/actions/index";
-import { connect} from "react-redux"
-
 import {
   Grid,
   Image,
@@ -17,21 +12,14 @@ import {
   ControlLabel
 } from 'react-bootstrap'
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addUser : user => dispatch(addUser(user))
-  };
-};
-
-class ConnectedLogin extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
       password: "",
-      messageFromServer: "",
-      user: ""
+      messageFromServer: ""
     };
 
     this.validateForm = this.validateForm.bind(this);
@@ -43,45 +31,39 @@ class ConnectedLogin extends Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    // send an axios request to log in.
+    // user data should be kept after via redux
+    axios.post('/signup', {email: this.state.email, password: this.state.password})
+    .then(function(response) {
+      console.log(response.data);
+      this.setState({messageFromServer: response.data});
+    })
+    .catch(error => {
+      // if this occurs, display failed login message
+      console.log("Signup error : ");
+      console.log(error);
+      self.setState(self.state.messageFromServer = error);
+      //self.state.messageFromServer = error;
+    });
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.id]: event.target.value
     });
   }
 
-  handleSubmit (event) {
-    event.preventDefault();
-    var self = this;
-    // send an axios request to log in.
-    axios.post('/login', {email: this.state.email, password: this.state.password })
-    .then(function(response) {
-      // if we get back a user, then we have been authenticated
-      if(response.data){
-        const user = response.data.user;
-        self.props.addUser(user);
-        // redirect the user
-        const location = {
-          pathname: '/profile_dev',
-        }
-        //self.props.history.push(location);
-      }
-      // unknown error
-      else{
-        console.log("Some error occured");
-      }
-    })
-    // this error will throw for incorrect credentials
-    .catch(error => {
-      console.log(error);
-    });
-  }
-
   render() {
-    return (<div className="Login">
+    return (<div className="Signup">
       <Grid>
         <Col sm={6} smOffset={3}>
           <Image src="images/logo.jpg" responsive/>
-          <h1 className="text-center"><span className="fa fa-sign-in" /> Log In</h1>
+          <h1 className="text-center"><span className="fa fa-sign-in" /> Sign Up</h1>
+          { this.state.messageFromServer &&
+            <div className="alert alert-danger">Failed to sign up. Does user already exist?</div>
+          }
           <form onSubmit={this.handleSubmit}>
             <FormGroup controlId="email" bsSize="large">
               <ControlLabel>Email</ControlLabel>
@@ -92,7 +74,7 @@ class ConnectedLogin extends Component {
               <FormControl value={this.state.password} onChange={this.handleChange} type="password"/>
             </FormGroup>
             <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
-              Login
+              Sign up
             </Button>
           </form>
         </Col>
@@ -101,10 +83,4 @@ class ConnectedLogin extends Component {
   }
 }
 
-const Login = connect(null, mapDispatchToProps)(ConnectedLogin);
-
-ConnectedLogin.propTypes = {
-  addUser: PropTypes.func.isRequired
-};
-
-export default Login;
+export default Signup;
