@@ -24,3 +24,4 @@ yarn-error.log*
 
 # bundle.js
 bundle.js
+package-lock.json
