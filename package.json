@@ -34,7 +34,7 @@
     "redux": "^4.0.0"
   },
   "scripts": {
-    "start": "npm run webpack && babel-node --presets latest -- bin/www",
+    "start": "npm run webpack && nodemon --exec babel-node --presets latest -- bin/www",
     "start-dev" : "npm-run-all --parallel watch:server watch:build",
     "watch:server" : "webpack --watch",
     "watch:build" : "nodemon --exec babel-node --presets latest -- bin/www",

@@ -51,6 +51,13 @@ router.use('/character', require('./character'));
 router.use('/api/user', require('../api/user'));
 router.use('/api/character', require('../api/character'));
 
+router.get('/whoami', function(req, res) {
+  if (req.user)
+    res.json({ user: req.user });
+  else
+    res.status(404).json({success: false});
+});
+
 // for everything else, route to index
 router.get('/*', function(req, res){
   res.render('index')

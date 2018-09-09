@@ -95,7 +95,7 @@ class ConnectedCharacterCreate extends Component {
               <FormControl value={this.state.class} onChange={this.handleChange} type="text"/>
             </FormGroup>
             <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
-              Sign up
+              Create
             </Button>
           </form>
         </Col>

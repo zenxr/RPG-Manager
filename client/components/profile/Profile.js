@@ -3,8 +3,13 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 // redux imports
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import axios from 'axios';
+
+// component and container imports
+import DisplayCharacters from './DisplayCharacters';
 
 import {
   Grid,
@@ -22,9 +27,56 @@ const mapStateToProps = state => {
 class ConnectedProfile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userHasNoChars : false,
+      characters : [],
+    };
+
+    this.getCharacters = this.getCharacters.bind(this);
+  }
+
+  getCharacters () {
+    var self = this;
+    axios.get(`/api/user/${this.props.user._id}/characters/`)
+    .then(function(response) {
+      if (response.data)
+        if (response.data && response.data.length > 0){
+          self.setState({
+            characters : [...self.state.characters, ...response.data]
+          });
+        }
+        else {
+          self.setState({
+            userHasNoChars: true
+          });
+        }
+    })
+    // this error will throw for incorrect credentials
+    .catch(error => {
+      // if this occurs, display failed login message
+      console.log("Character Fetch Error : ");
+      console.log(error);
+    });
   }
 
   render() {
+    if ( this.props && this.props.user && this.props.user._id ){
+      if (this.state.characters && this.state.characters.length > 0){
+        // we need to render the characterdisplay component
+      }
+      else{
+        if (this.state.userHasNoChars){
+          // then we won't render anything or query again
+        }
+        else {
+          // we are unsure,
+          // we need to get the characters
+          this.getCharacters();
+        }
+      }
+    }
+
     return (<div className="Signup">
       <Grid>
         <Col sm={6} smOffset={3}>
@@ -59,6 +111,9 @@ class ConnectedProfile extends Component {
             </div>
           </Well>
         </Col>
+        { this.state.characters && this.state.characters.length > 0 &&
+          <DisplayCharacters characters={this.state.characters} />
+        }
       </Grid>
     </div>);
   }

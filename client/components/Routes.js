@@ -2,14 +2,15 @@
 
 import React, { Component } from 'react';
 // import axios from 'axios';
-import { Route, Switch, Link } from 'react-router-dom';
+// import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import Login from './Login';
-import AppNavbar from './AppNavbar';
-import Signup from './Signup';
-import Home from './Home';
-import Profile from './Profile';
-import CharacterCreate from './CharacterCreate';
+import Login from './login/Login';
+import AppNavbar from './common/AppNavbar';
+import Signup from './signup/Signup';
+import Home from './home/Home';
+import Profile from './profile/Profile';
+import CharacterCreate from './profile/CharacterCreate';
 
 class Routes extends Component {
   render () {

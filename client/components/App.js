@@ -5,9 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 // import components
 import Routes from './Routes';
 
-// import css
-//import '../css/bootstrap.min.css';
-
 
 // redux imports
 import { Provider } from "react-redux";

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // redux imports
 import PropTypes from "prop-types";
-import { addUser } from "../redux/actions/index";
+import { addUser } from "../../redux/actions/index";
 import { connect} from "react-redux"
 
 import {
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class ConnectedSignup extends Component {
+class ConnectedLogin extends Component {
   constructor(props) {
     super(props);
 
@@ -52,7 +52,7 @@ class ConnectedSignup extends Component {
     event.preventDefault();
     var self = this;
     // send an axios request to log in.
-    axios.post('/signup', {email: this.state.email, password: this.state.password })
+    axios.post('/login', {email: this.state.email, password: this.state.password })
     .then(function(response) {
       // if we get back a user, then we have been authenticated
       if(response.data){
@@ -72,7 +72,7 @@ class ConnectedSignup extends Component {
     // this error will throw for incorrect credentials
     .catch(error => {
       // if this occurs, display failed login message
-      console.log("Signup Error : ");
+      console.log("Login Error : ");
       console.log(error);
       self.setState(self.state.messageFromServer = error);
       //self.state.messageFromServer = error;
@@ -80,14 +80,14 @@ class ConnectedSignup extends Component {
   }
 
   render() {
-    return (<div className="Signup">
+    return (<div className="Login">
       <Grid>
         <Col sm={6} smOffset={3}>
           <Image src="images/logo.jpg" responsive/>
-          <h1 className="text-center"><span className="fa fa-sign-in" />Sign Up</h1>
+          <h1 className="text-center"><span className="fa fa-sign-in" /> Log In</h1>
           {/* only display if we failed login */}
           { this.state.messageFromServer &&
-            <div className="alert alert-danger">Failed to sign up. Does user exist?</div>
+            <div className="alert alert-danger">Incorrect login credentials.</div>
           }
           <form onSubmit={this.handleSubmit}>
             <FormGroup controlId="email" bsSize="large">
@@ -108,10 +108,10 @@ class ConnectedSignup extends Component {
   }
 }
 
-const Signup = connect(null, mapDispatchToProps)(ConnectedSignup);
+const Login = connect(null, mapDispatchToProps)(ConnectedLogin);
 
-ConnectedSignup.propTypes = {
+ConnectedLogin.propTypes = {
   addUser: PropTypes.func.isRequired
 };
 
-export default Signup;
+export default Login;
