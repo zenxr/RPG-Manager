@@ -23,16 +23,18 @@ function get(req, res) {
 
 // create a character
 function create(req, res) {
-  const newChar = new Character({
-    name : req.body.name,
-    race : req.body.race,
-    class : req.body.class,
-    user: req.body.user
-  });
+  if(req.body.user){
+    const newChar = new Character({
+      name : req.body.name,
+      race : req.body.race,
+      class : req.body.class,
+      user: req.body.user
+    });
+  }
 
   // save the character to DB
   newChar.save()
-  .then(character => res.json(character));
+  .then(character => res.json({success: true}));
 }
 
 // delete a character
