@@ -15,3 +15,35 @@ Utilizing npm, the project is set up to run in one of two ways:
 
 * `npm start` starts the server for deployment purposes
 * `npm run start-dev` starts the server in a reloadable state where the server is reloaded upon changes.
+
+## Structure
+
+```
+.
+├── README.md
+├── bin
+│   └── www
+├── client
+│   ├── bundle.js
+│   ├── components    <-- react components
+│   │   ├── App.js    <-- react config
+│   │   └── ...
+│   ├── index.js <-- react entry point
+│   └── redux
+│       └── ...
+├── models    <- mongodb models here
+│   └── ...
+├── package.json    <-- project dependencies and config
+├── server
+│   ├── api
+│   │   ├── character
+│   │   │   ├── character.controller.js   <-- handles operations
+│   │   │   └── index.js    <-- handles routes to controller
+│   │   └── ...
+│   ├── config <-- authentication, etc
+│   │   └── ..
+│   ├── routes
+│   │   └── routes.js   <-- backend route handling, to API etc
+│   └── server.js   <-- express config
+└── webpack.config.js -- webpack configuration file
+```
