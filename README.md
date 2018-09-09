@@ -31,7 +31,7 @@ Utilizing npm, the project is set up to run in one of two ways:
 │   ├── index.js <-- react entry point
 │   └── redux
 │       └── ...
-├── models    <- mongodb models here
+├── models    <-- mongodb models here
 │   └── ...
 ├── package.json    <-- project dependencies and config
 ├── server
@@ -45,5 +45,5 @@ Utilizing npm, the project is set up to run in one of two ways:
 │   ├── routes
 │   │   └── routes.js   <-- backend route handling, to API etc
 │   └── server.js   <-- express config
-└── webpack.config.js -- webpack configuration file
+└── webpack.config.js <-- webpack configuration file
 ```
