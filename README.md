@@ -1,5 +1,5 @@
-![alt text](./client/images/logo.jpg "Logo DnD")
-# MERN Dungeons and Dragons
+
+# RPG Manager
 This application is currently *under development*. It is indended to help users by managing their character sheets, inventories, and more.
 ## Framework
 This application uses the MERN fullstack (MongoDB, Express, React.js, and Node).
